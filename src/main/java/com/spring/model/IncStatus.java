@@ -6,9 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="team_member")
-public class TeamMember {
-	
+@Table(name="incstatus")
+public class IncStatus {
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -27,5 +26,4 @@ public class TeamMember {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 }

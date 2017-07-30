@@ -3,7 +3,6 @@ package com.spring.service;
 import java.util.List;
 
 import com.spring.model.Incident;
-import com.spring.model.TeamMember;
 
 public interface IncidentService {
 	

@@ -28,7 +28,7 @@ public class Incident {
 	@OneToOne
 	private Priority priority;
 	@OneToOne
-	private Status status;
+	private IncStatus status;
 	@OneToOne
 	@JoinColumn(name = "solved_by_id")
 	private TcsDevs solveBy;
@@ -80,10 +80,10 @@ public class Incident {
 	public void setPriority(Priority priority) {
 		this.priority = priority;
 	}
-	public Status getStatus() {
+	public IncStatus getIncStatus() {
 		return status;
 	}
-	public void setStatus(Status status) {
+	public void setStatus(IncStatus status) {
 		this.status = status;
 	}
 	public TcsDevs getSolveBy() {
