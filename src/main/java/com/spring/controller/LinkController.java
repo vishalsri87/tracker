@@ -9,11 +9,18 @@ public class LinkController {
 	
 	@RequestMapping(value="/")
 	public ModelAndView mainPage() {
+		System.out.println("inside home1");
 		return new ModelAndView("home");
 	}
 	
-	@RequestMapping(value="/index")
-	public ModelAndView indexPage() {
-		return new ModelAndView("home");
-	}
+	@RequestMapping(value="/home")
+    public String getAllIncs() {
+        return "listInc";   
+    }
+	@RequestMapping(value="/inc/create")
+    public String getCreateIncs() {
+		System.out.println("inside create");
+        return "createInc";   
+    }
+ 
 }

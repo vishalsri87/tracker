@@ -83,7 +83,7 @@ public class Incident {
 	public IncStatus getIncStatus() {
 		return status;
 	}
-	public void setStatus(IncStatus status) {
+	public void setIncStatus(IncStatus status) {
 		this.status = status;
 	}
 	public TcsDevs getSolveBy() {

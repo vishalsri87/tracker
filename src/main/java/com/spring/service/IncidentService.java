@@ -12,4 +12,7 @@ public interface IncidentService {
 	public void deleteIncident(int id);
 	public List<Incident> getAllIncident();
 
+	public boolean isIncidentExist(Incident inc); 
+
+	public Incident findByIncidentNumber(String num) ;
 }

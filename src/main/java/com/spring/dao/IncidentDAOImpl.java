@@ -29,10 +29,17 @@ public class IncidentDAOImpl implements IncidentDAO {
 	}
 
 	public Incident getIncident(int id) {
-		Incident inc = (Incident) getCurrentSession().get(Incident.class, id);
+		String hql = "FROM Incident where id="+id;
+		Incident inc = (Incident)getCurrentSession().createQuery(hql);
+		return inc;
+		
+	}
+	public Incident getIncByIncNumber(String num){
+		String incNum = num.trim();
+		String hql = "FROM Incident inc where upper(incNumber)= upper("+incNum+")";
+		Incident inc = (Incident)getCurrentSession().createQuery(hql);
 		return inc;
 	}
-
 	public void deleteIncident(int id) {
 		Incident inc = getIncident(id);
 		if (inc != null)

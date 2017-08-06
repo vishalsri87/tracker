@@ -12,12 +12,12 @@ import com.spring.model.Incident;
 @Service
 @Transactional
 public class IncidentServiceImpl implements IncidentService {
-	
+
 	@Autowired
 	private IncidentDAO incDAO;
 
 	public void addIncident(Incident inc) {
-		incDAO.addIncident(inc);		
+		incDAO.addIncident(inc);
 	}
 
 	public void updateIncident(Incident inc) {
@@ -36,4 +36,15 @@ public class IncidentServiceImpl implements IncidentService {
 		return incDAO.getAllIncident();
 	}
 
+	public boolean isIncidentExist(Incident inc) {
+		return findByIncidentNumber(inc.getIncNumber())!=null;
+	}
+	
+	public Incident findByIncidentNumber(String num) {
+		Incident inc = incDAO.getIncByIncNumber(num);
+            if(inc!=null){
+                return inc;
+            }
+            return null;
+	}
 }
