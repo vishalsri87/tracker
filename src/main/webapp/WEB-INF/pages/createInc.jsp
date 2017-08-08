@@ -10,7 +10,8 @@
 				<div class="col-md-7">
 					<input type="text" ng-model="ctrl.inc.incNumber" id="incNumber"
 						class="incNumber form-control input-sm"
-						placeholder="Enter your incNumber" required ng-minlength="3" />
+						placeholder="Enter your incNumber" required ng-minlength="1" />
+						{{ctrl.inc.incNumber}}
 				</div>
 			</div>
 		</div>
@@ -20,7 +21,7 @@
 				<div class="col-md-7">
 					<input type="text" ng-model="ctrl.inc.issue" id="issue"
 						class="issue form-control input-sm" placeholder="Enter your issue"
-						required ng-minlength="3" />
+						required ng-minlength="1" />
 				</div>
 			</div>
 		</div>
@@ -30,7 +31,7 @@
 				<div class="col-md-7">
 					<input type="text" ng-model="ctrl.inc.description" id="description"
 						class="description form-control input-sm"
-						placeholder="Enter your description" required ng-minlength="3" />
+						placeholder="Enter your description" required ng-minlength="1" />
 				</div>
 			</div>
 		</div>
@@ -40,7 +41,7 @@
 				<div class="col-md-7">
 					<input type="text" ng-model="ctrl.inc.resolution" id="resolution"
 						class="resolution form-control input-sm"
-						placeholder="Enter your resolution" required ng-minlength="3" />
+						placeholder="Enter your resolution" required ng-minlength="1" />
 				</div>
 			</div>
 		</div>
@@ -52,7 +53,7 @@
 				<div class="col-md-7">
 					<input type="text" ng-model="ctrl.inc.sendBy" id="sendBy"
 						class="resolution form-control input-sm"
-						placeholder="Enter your sendBy" required ng-minlength="3" />
+						placeholder="Enter your sendBy" required ng-minlength="1" />
 				</div>
 			</div>
 		</div>
@@ -62,7 +63,7 @@
 				<div class="col-md-7">
 					<input type="text" ng-model="ctrl.inc.priority" id="sendBy"
 						class="priority form-control input-sm"
-						placeholder="Enter your priority" required ng-minlength="3" />
+						placeholder="Enter your priority" required ng-minlength="1" />
 				</div>
 			</div>
 		</div>
@@ -72,7 +73,7 @@
 				<div class="col-md-7">
 					<input type="text" ng-model="ctrl.inc.status" id="status"
 						class="status form-control input-sm"
-						placeholder="Enter your status" required ng-minlength="3" />
+						placeholder="Enter your status" required ng-minlength="1" />
 				</div>
 			</div>
 		</div>
@@ -82,7 +83,7 @@
 				<div class="col-md-7">
 					<input type="text" ng-model="ctrl.inc.solveBy" id="solveBy"
 						class="solveBy form-control input-sm"
-						placeholder="Enter your solveBy" required ng-minlength="3" />
+						placeholder="Enter your solveBy" required ng-minlength="1" />
 				</div>
 			</div>
 		</div>
@@ -92,7 +93,7 @@
 				<div class="col-md-7">
 					<input type="date" ng-model="ctrl.inc.issueDate" id="issueDate"
 						class="issueDate form-control input-sm"
-						placeholder="Enter your issueDate" required ng-minlength="3" />
+						placeholder="Enter your issueDate" required ng-minlength="1" />
 				</div>
 			</div>
 		</div>
@@ -102,7 +103,7 @@
 				<div class="col-md-7">
 					<input type="date" ng-model="ctrl.inc.pickByTcs" id="pickByTcs"
 						class="pickByTcs form-control input-sm"
-						placeholder="Enter your pickByTcs" required ng-minlength="3" />
+						placeholder="Enter your pickByTcs" required ng-minlength="1" />
 				</div>
 			</div>
 		</div>

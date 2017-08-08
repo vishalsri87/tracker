@@ -1,10 +1,13 @@
-<span class="lead">List of Incidents </span>
+<div class="panel panel-default">
+  <div class="panel-heading">List of Incidents</div>
+   
                   <table class="table table-hover table-striped table-responsive">
                       <thead>
-                          <tr>
+                         <tr class="panel panel-default">
                               <th>ID.</th>
                               <th>Issue</th>
                               <th>IncNumber</th>
+                              <th>Status</th>
                               <th>Description</th>
                               <th>resolution</th>
                               <th>Send By</th>
@@ -12,26 +15,28 @@
                               <th>Solved By</th>
                               <th>Issue Date</th>
                               <th>PickByTcs</th>
-                              <th>Status</th>
                               
                           </tr>
                       </thead>
                       <tbody>
                           <tr ng-repeat="inc in trController.incs">
                          
-                              <td><span ng-bind="inc.id"></span></td>
+                              <td><span class="badge" ng-bind="inc.id"></span></td>
                               <td><span ng-bind="inc.issue"></span></td>
-                              <td><span ng-bind="inc.incNumber"></span></td>
+                              <td><span class="label label-default" ng-bind="inc.incNumber"></span></td>
+                              <td ng-if="inc.incStatus.id == 1"><span class="label label-danger"  ng-bind="inc.incStatus.name"></span></td>
+                              <td ng-if="inc.incStatus.id > 1"><span class="label label-success"  ng-bind="inc.incStatus.name"></span></td>
                               <td><span ng-bind="inc.description"></span></td>
                               <td><span ng-bind="inc.resolution"></span></td>
                               <td><span ng-bind="inc.sendBy.name"></span></td>
-                              <td><span ng-bind="inc.priority.name"></span></td>
+                              <td><span class="label label-info" ng-bind="inc.priority.name"></span></td>
                               <td><span ng-bind="inc.solveBy.name"></span></td>
-                              <td><span ng-bind="inc.issueDate"></span></td>
-                              <td><span ng-bind="inc.pickByTcs"></span></td>
-                              <td><span ng-bind="inc.incStatus.name"></span></td>
+                              <td><span class="label label-primary">{{inc.issueDate | date:'dd-MM-yyyy'}}</span></td>
+                              <td><span class="label label-primary">{{inc.pickByTcs | date:'dd-MM-yyyy'}}</span></td>
                               
                           </tr>
                       </tbody>
                   </table>
+                  </div>
+                  </div>
              

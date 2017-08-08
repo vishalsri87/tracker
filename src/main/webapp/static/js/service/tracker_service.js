@@ -26,26 +26,28 @@ angular.module('tracker').factory('IncService', ['$http', '$q', function($http, 
         );
         return deferred.promise;
     }
+    
+
+
+    function createInc(inc) {
+        var deferred = $q.defer();
+        $http.post(REST_SERVICE_URI+'inc/create', inc)
+            .then(		
+            function (response) {
+            	console.log(inc);
+                deferred.resolve(response.data);
+                console.log('Inc created');
+            },
+            function(errResponse){
+                console.error('Error while creating Incident');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+
+
 }]);
-
-
-
-function createInc(inc) {
-    var deferred = $q.defer();
-    $http.post(REST_SERVICE_URI+'/inc/create', inc)
-        .then(		
-        function (response) {
-        	console.log(inc);
-            deferred.resolve(response.data);
-            console.log('Inc created');
-        },
-        function(errResponse){
-            console.error('Error while creating Incident');
-            deferred.reject(errResponse);
-        }
-    );
-    return deferred.promise;
-}
 
 
 

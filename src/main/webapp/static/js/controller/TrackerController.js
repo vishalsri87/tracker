@@ -2,7 +2,9 @@
 angular.module('tracker').controller('TrackerController', ['$scope', 'IncService', function($scope, IncService) {
 	    var self = this;
 	    self.incs=[];
-	    self.inc={id:null,incNumber:'',issue:'',description:'',description:'',sendBy:'',priority:'',status:'',solveBy:'',issueDate:'',pickByTcs:''};
+	    self.inc={id:null,issue:'',incNumber:'',description:'',description:'',resolution:'',sendBy:'',priority:'',solveBy:'',issueDate:'',pickByTcs:'',incStatus:''};
+	    
+	    
 	    fetchAllIncs();
 	    self.submit = submit;
 	   

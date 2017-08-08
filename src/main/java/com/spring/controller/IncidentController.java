@@ -47,8 +47,8 @@ public class IncidentController {
     
     @RequestMapping(value = "/inc/create", method = RequestMethod.POST)
     public ResponseEntity<Void> createInc(@RequestBody Incident inc,    UriComponentsBuilder ucBuilder) {
-        
-        if (incService.isIncidentExist(inc)) {
+    	   System.out.println("A Inc with inc number " + inc.getIncNumber() );
+           if (incService.isIncidentExist(inc)) {
             System.out.println("A Inc with inc number " + inc.getIncNumber() + " already exist");
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
