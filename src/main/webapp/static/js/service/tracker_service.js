@@ -6,7 +6,11 @@ angular.module('tracker').factory('IncService', ['$http', '$q', function($http, 
 
     var factory = {
     		fetchAllIncs: fetchAllIncs,
-    		createInc: createInc
+    		createInc: createInc,
+    		fetchAllPriority :fetchAllPriority,
+    		fetchAllSolveBy : fetchAllSolveBy,
+    	    fetchAllStatus : fetchAllStatus,
+    	    fetchAllSendBy : fetchAllSendBy
         
     };
 
@@ -26,8 +30,66 @@ angular.module('tracker').factory('IncService', ['$http', '$q', function($http, 
         );
         return deferred.promise;
     }
+    function fetchAllPriority() {
+        var deferred = $q.defer();
+        $http.get(REST_SERVICE_URI+'priority/jsonlist')
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while fetching priority');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
     
-
+    function fetchAllSendBy() {
+        var deferred = $q.defer();
+        $http.get(REST_SERVICE_URI+'sendBy/jsonlist')
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while fetching send by');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+    
+    function fetchAllStatus() {
+        var deferred = $q.defer();
+        $http.get(REST_SERVICE_URI+'status/jsonlist')
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while fetching status');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+    
+    function fetchAllSolveBy() {
+        var deferred = $q.defer();
+        $http.get(REST_SERVICE_URI+'tcsDevs/jsonlist')
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while fetching tcs dev');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+    
 
     function createInc(inc) {
         var deferred = $q.defer();
@@ -36,7 +98,7 @@ angular.module('tracker').factory('IncService', ['$http', '$q', function($http, 
             function (response) {
             	console.log(inc);
                 deferred.resolve(response.data);
-                console.log('Inc created');
+                alert('Inc created');
             },
             function(errResponse){
                 console.error('Error while creating Incident');

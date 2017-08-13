@@ -3,6 +3,7 @@ package com.spring.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -15,9 +16,17 @@ import javax.persistence.TemporalType;
 public class Incident {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 
+	@Override
+	public String toString() {
+		return "Incident [id=" + id + ", issue=" + issue + ", incNumber="
+				+ incNumber + ", description=" + description + ", resolution="
+				+ resolution + ", sendBy=" + sendBy + ", priority=" + priority
+				+ ", status=" + status.getId() +" "+ status.getName()+ ", solveBy=" + solveBy
+				+ ", issueDate=" + issueDate + ", pickByTcs=" + pickByTcs + "]";
+	}
 	private String issue;
 	private String incNumber;
 	private String description;
@@ -25,10 +34,15 @@ public class Incident {
 	@OneToOne
     @JoinColumn(name = "send_by_id")
 	private SendBy sendBy;
+	
 	@OneToOne
+	@JoinColumn(name = "priority_id")
 	private Priority priority;
+	
 	@OneToOne
+	@JoinColumn(name = "status_id")
 	private IncStatus status;
+	
 	@OneToOne
 	@JoinColumn(name = "solved_by_id")
 	private TcsDevs solveBy;

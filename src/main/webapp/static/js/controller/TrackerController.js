@@ -1,13 +1,30 @@
 'use strict';
-angular.module('tracker').controller('TrackerController', ['$scope', 'IncService', function($scope, IncService) {
+angular.module('tracker').controller('TrackerController', ['$scope', 'IncService','$location', function($scope, IncService,$location) {
 	    var self = this;
 	    self.incs=[];
-	    self.inc={id:null,issue:'',incNumber:'',description:'',description:'',resolution:'',sendBy:'',priority:'',solveBy:'',issueDate:'',pickByTcs:'',incStatus:''};
-	    
+			    self.inc = {
+				id : null,
+				issue : '',
+				incNumber : '',
+				description : '',
+				resolution : '',
+				sendBy : {'id': 1,'name':'L2 Team'},
+				priority : '',
+				incStatus:{"id" : 1,"name":"Open"},
+				solveBy : {'id': 2,'name':'Lenin'},
+				issueDate : '',
+				pickByTcs : ''
+				
+			};
+			    self.proirites=[];
 	    
 	    fetchAllIncs();
+	    fetchAllPriority();
+	    fetchAllSendBy();
 	    self.submit = submit;
-	   
+	    fetchAllStatus();
+	    fetchAllSolveBy();
+	    
 	    function fetchAllIncs(){
 	    	console.log('inside fetchAllIncs');
 	    	IncService.fetchAllIncs()
@@ -21,7 +38,65 @@ angular.module('tracker').controller('TrackerController', ['$scope', 'IncService
 	            }
 	        );
 	    }
-
+	    function fetchAllPriority(){
+	    	console.log('inside fetchAllPriority');
+	    	IncService.fetchAllPriority()
+	            .then(
+	            function(d) {
+	                self.proirites = d;
+	                console.log(d);
+	            },
+	            function(errResponse){
+	                console.error('Error while fetching proirites');
+	            }
+	        );
+	    }
+	    function fetchAllSendBy(){
+	    	console.log('inside fetchAllSendBy');
+	    	IncService.fetchAllSendBy()
+	            .then(
+	            function(d) {
+	                self.allSendBy = d;
+	                console.log(d);
+	            },
+	            function(errResponse){
+	                console.error('Error while fetching AllSendBy');
+	            }
+	        );
+	    }
+	    
+	    function fetchAllStatus(){
+	    	console.log('inside fetchAllPriority');
+	    	IncService.fetchAllStatus()
+	            .then(
+	            function(d) {
+	            	self.allStatus=[];
+	                self.allStatus = d;
+	                console.log(d);
+	            },
+	            function(errResponse){
+	                console.error('Error while fetching status');
+	            }
+	        );
+	    }
+	    
+	    function fetchAllSolveBy(){
+	    	console.log('inside fetchAllSolveBy');
+	    	IncService.fetchAllSolveBy()
+	            .then(
+	            function(d) {
+	            	self.allSolveBy = [];
+	                self.allSolveBy = d;
+	                console.log(d);
+	            },
+	            function(errResponse){
+	                console.error('Error while fetching AllSolveBy');
+	            }
+	        );
+	    }
+	    
+	    
+	    
 	    function createInc(inc){
 	    	console.log('inside create');
 	    	IncService.createInc(inc)
@@ -35,11 +110,14 @@ angular.module('tracker').controller('TrackerController', ['$scope', 'IncService
 	    function submit() {
 	    	console.log('inside submit');
 	        if(self.inc.id===null){
-	            console.log('Saving New Inc', self.inc);
-	            createInc(self.inc);
-	        }
-	        console.log('moving to home');
+	        	createInc(self.inc);
+	        	alert('Saving New Inc');
+	            $location.path('/home');
+	        }else{
+	            alert('not saved');
+	            $location.path('/home');
 	        
+	    }
 	    }
 	    
 	    

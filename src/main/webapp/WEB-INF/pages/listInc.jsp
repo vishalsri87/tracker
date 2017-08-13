@@ -1,10 +1,9 @@
 <div class="panel panel-default">
   <div class="panel-heading">List of Incidents</div>
    
-                  <table class="table table-hover table-striped table-responsive">
+                  <table class="table table-hover table-striped table-responsive" style=" margin-top:20px">
                       <thead>
                          <tr class="panel panel-default">
-                              <th>ID.</th>
                               <th>Issue</th>
                               <th>IncNumber</th>
                               <th>Status</th>
@@ -21,7 +20,6 @@
                       <tbody>
                           <tr ng-repeat="inc in trController.incs">
                          
-                              <td><span class="badge" ng-bind="inc.id"></span></td>
                               <td><span ng-bind="inc.issue"></span></td>
                               <td><span class="label label-default" ng-bind="inc.incNumber"></span></td>
                               <td ng-if="inc.incStatus.id == 1"><span class="label label-danger"  ng-bind="inc.incStatus.name"></span></td>

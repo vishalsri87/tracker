@@ -47,17 +47,19 @@ public class IncidentController {
     
     @RequestMapping(value = "/inc/create", method = RequestMethod.POST)
     public ResponseEntity<Void> createInc(@RequestBody Incident inc,    UriComponentsBuilder ucBuilder) {
-    	   System.out.println("A Inc with inc number " + inc.getIncNumber() );
-           if (incService.isIncidentExist(inc)) {
+    	System.out.println("A Inc with inc number " + inc.getIncNumber() );
+    	System.out.println("A Inc with inc number " + inc.toString() );
+        /*if (incService.isIncidentExist(inc)) {
             System.out.println("A Inc with inc number " + inc.getIncNumber() + " already exist");
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }
+        }*/
+    	   
   
         incService.addIncident(inc);
   
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/inc/{id}").buildAndExpand(inc.getId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        //HttpHeaders headers = new HttpHeaders();
+        //headers.setLocation(ucBuilder.path("/inc/{id}").buildAndExpand(inc.getId()).toUri());
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
   
      

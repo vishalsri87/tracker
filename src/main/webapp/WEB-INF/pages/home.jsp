@@ -11,10 +11,9 @@
       <script src="<c:url value='/static/js/app.js' />"></script>
       <script src="<c:url value='/static/js/service/tracker_service.js' />"></script>
       <script src="<c:url value='/static/js/controller/TrackerController.js' />"></script>
-      <script src="<c:url value='/static/js/controller/CreateController.js' />"></script>
-    
+      
   </head>
-  <body >
+  <body style="font-family: "Times New Roman", Georgia, Serif;">
   <div class="collapse navbar-collapse" id="mynavbar">
 							<ul class="nav navbar-nav pull-right">
 								<li class="active"><a ui-sref="home" class="tab_style" ui-sref-active="active">Home</a></li>
