@@ -40,6 +40,10 @@ public class IncidentServiceImpl implements IncidentService {
 		return findByIncidentNumber(inc.getIncNumber())!=null;
 	}
 	
+	public List<Incident> search(String key) {
+		return incDAO.search(key);
+	}
+
 	public Incident findByIncidentNumber(String num) {
 		Incident inc = incDAO.getIncByIncNumber(num);
             if(inc!=null){

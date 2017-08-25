@@ -50,7 +50,10 @@ public class IncidentDAOImpl implements IncidentDAO {
 	public List<Incident> getAllIncident() {
 		return getCurrentSession().createQuery("from Incident").list();
 	}
+	@SuppressWarnings("unchecked")
+	public List<Incident> search(String key) {
+		return getCurrentSession().createQuery("from Incident where description like ?").setString(0, "%"+key+"%").list();
+	}
 
-	
 
 }

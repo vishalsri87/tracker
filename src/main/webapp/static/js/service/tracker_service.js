@@ -10,12 +10,29 @@ angular.module('tracker').factory('IncService', ['$http', '$q', function($http, 
     		fetchAllPriority :fetchAllPriority,
     		fetchAllSolveBy : fetchAllSolveBy,
     	    fetchAllStatus : fetchAllStatus,
-    	    fetchAllSendBy : fetchAllSendBy
-        
+    	    fetchAllSendBy : fetchAllSendBy,
+    	    search : search
+            
     };
 
     return factory;
 
+    function search(key) {
+        var deferred = $q.defer();
+        $http.get(REST_SERVICE_URI+'inc/search/'+key)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while fetching search result');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+    
+    
     function fetchAllIncs() {
         var deferred = $q.defer();
         $http.get(REST_SERVICE_URI+'inc/jsonlist')

@@ -22,6 +22,7 @@ angular.module('tracker').controller('TrackerController', ['$scope', 'IncService
 	    fetchAllPriority();
 	    fetchAllSendBy();
 	    self.submit = submit;
+	    self.search = search;
 	    fetchAllStatus();
 	    fetchAllSolveBy();
 	    
@@ -118,6 +119,22 @@ angular.module('tracker').controller('TrackerController', ['$scope', 'IncService
 	            $location.path('/home');
 	        
 	    }
+	    }
+	    
+	    
+	    function search(searchKey){
+	    	console.log('inside search'+searchKey);
+	    	IncService.search(searchKey)
+	            .then(
+	            function(d) {
+	            	self.searchResult = [];
+	                self.searchResult = d;
+	                console.log(d);
+	            },
+	            function(errResponse){
+	                console.error('Error while fetching search result');
+	            }
+	        );
 	    }
 	    
 	    

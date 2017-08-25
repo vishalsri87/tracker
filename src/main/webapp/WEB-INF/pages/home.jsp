@@ -14,17 +14,21 @@
       
   </head>
   <body style="font-family: "Times New Roman", Georgia, Serif;">
-  <div class="collapse navbar-collapse" id="mynavbar">
-							<ul class="nav navbar-nav pull-right">
-								<li class="active"><a ui-sref="home" class="tab_style" ui-sref-active="active">Home</a></li>
-								<li><a ui-sref="create" class="tab_style" ui-sref-active="active">Create</a></li>
-								
-							</ul>
-						</div>
-      
+	<div class="collapse navbar-collapse" id="mynavbar">
+		<ul class="nav navbar-nav pull-right">
+			<li class="active"><a ui-sref="home" class="tab_style"
+				ui-sref-active="active">Home</a></li>
+			<li><a ui-sref="create" class="tab_style"
+				ui-sref-active="active">Create</a></li>
+			<li><a ui-sref="search" class="tab_style"
+				ui-sref-active="active">Search</a></li>
+
+		</ul>
+	</div>
+	<div ng-controller="TrackerController as trController">
       <div ui-view></div>
       
-       
+       </div>
       
       
   </body>

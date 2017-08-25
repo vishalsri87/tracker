@@ -22,5 +22,10 @@ public class LinkController {
 		System.out.println("inside create");
         return "createInc";   
     }
+	@RequestMapping(value="/inc/search")
+    public String getSeachPage() {
+		System.out.println("inside search page");
+        return "search";   
+    }
  
 }

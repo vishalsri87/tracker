@@ -19,6 +19,11 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         templateUrl: 'inc/create',
     })
  
+    .state('search', {
+        url: "/inc/search",
+        templateUrl: 'inc/search',
+    })
+ 
        
     
  

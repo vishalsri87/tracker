@@ -12,5 +12,6 @@ public interface IncidentDAO {
 	public Incident getIncByIncNumber(String num);
 	public void deleteIncident(int id);
 	public List<Incident> getAllIncident();
+	public List<Incident> search(String key);
 
 }

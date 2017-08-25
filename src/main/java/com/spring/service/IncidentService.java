@@ -11,6 +11,7 @@ public interface IncidentService {
 	public Incident getIncident(int id);
 	public void deleteIncident(int id);
 	public List<Incident> getAllIncident();
+	public List<Incident> search(String key);
 
 	public boolean isIncidentExist(Incident inc); 
 

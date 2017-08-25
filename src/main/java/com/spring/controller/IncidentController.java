@@ -20,6 +20,17 @@ public class IncidentController {
 	@Autowired
 	private IncidentService incService;
 	
+	@RequestMapping(value="inc/search/{key}" ,produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Incident>> search(@PathVariable("key") String key) {
+		
+		List<Incident> inc = incService.search(key);
+			
+		if(inc.isEmpty()){
+            return new ResponseEntity<List<Incident>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<List<Incident>>(inc, HttpStatus.OK);
+		
+	}
 	@RequestMapping(value="inc/jsonlist")
 	public ResponseEntity<List<Incident>> listOfIncidents() {
 		
