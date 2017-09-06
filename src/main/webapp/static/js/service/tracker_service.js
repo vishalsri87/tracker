@@ -11,12 +11,31 @@ angular.module('tracker').factory('IncService', ['$http', '$q', function($http, 
     		fetchAllSolveBy : fetchAllSolveBy,
     	    fetchAllStatus : fetchAllStatus,
     	    fetchAllSendBy : fetchAllSendBy,
-    	    search : search
+    	    search : search,
+    	    fetchDetails : fetchDetails
             
     };
 
     return factory;
 
+    function fetchDetails(id) {
+    	var deferred = $q.defer();
+        alert('enter');
+        $http.get(REST_SERVICE_URI+'inc/pageDetails/'+id).then(
+            function (response) {
+            	deferred.resolve(response.data);
+            	 alert('response');
+            },
+            function(errResponse){
+                console.error('Error while fetching Incidents');
+                deferred.reject(errResponse);
+            }
+        );
+        alert('exit');
+        
+        return deferred.promise;
+    }
+    
     function search(key) {
         var deferred = $q.defer();
         $http.get(REST_SERVICE_URI+'inc/search/'+key)
@@ -33,9 +52,9 @@ angular.module('tracker').factory('IncService', ['$http', '$q', function($http, 
     }
     
     
-    function fetchAllIncs() {
-        var deferred = $q.defer();
-        $http.get(REST_SERVICE_URI+'inc/jsonlist')
+    function fetchAllIncs(month,year) {
+    	var deferred = $q.defer();
+        $http.get(REST_SERVICE_URI+'inc/jsonlist/'+month+'/'+year)
             .then(
             function (response) {
                 deferred.resolve(response.data);
@@ -109,13 +128,16 @@ angular.module('tracker').factory('IncService', ['$http', '$q', function($http, 
     
 
     function createInc(inc) {
+    	alert('inside service : createInc 1');
+		
         var deferred = $q.defer();
         $http.post(REST_SERVICE_URI+'inc/create', inc)
             .then(		
             function (response) {
-            	console.log(inc);
-                deferred.resolve(response.data);
-                alert('Inc created');
+            	alert('inside service : createInc 2');
+        		deferred.resolve(response.data);
+        		alert('inside service : createInc 3');
+        		
             },
             function(errResponse){
                 console.error('Error while creating Incident');

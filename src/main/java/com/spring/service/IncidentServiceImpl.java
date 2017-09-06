@@ -16,8 +16,9 @@ public class IncidentServiceImpl implements IncidentService {
 	@Autowired
 	private IncidentDAO incDAO;
 
-	public void addIncident(Incident inc) {
-		incDAO.addIncident(inc);
+	public Incident addIncident(Incident inc) {
+		return incDAO.addIncident(inc);
+		
 	}
 
 	public void updateIncident(Incident inc) {

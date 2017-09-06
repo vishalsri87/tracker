@@ -19,8 +19,9 @@ public class IncidentDAOImpl implements IncidentDAO {
 		return sessionFactory.getCurrentSession();
 	}
 
-	public void addIncident(Incident incident) {
+	public Incident addIncident(Incident incident) {
 		getCurrentSession().save(incident);
+		return incident;
 	}
 
 	public void updateIncident(Incident incident) {
@@ -30,14 +31,26 @@ public class IncidentDAOImpl implements IncidentDAO {
 
 	public Incident getIncident(int id) {
 		String hql = "FROM Incident where id="+id;
-		Incident inc = (Incident)getCurrentSession().createQuery(hql);
+		/*Incident inc = (Incident)getCurrentSession().createQuery(hql).list().get(0);
+		return inc;*/
+		
+		List list = getCurrentSession().createQuery(hql).list();
+		if(list.isEmpty()){
+			return null;
+		}
+		Incident inc = (Incident)getCurrentSession().createQuery(hql).list().get(0);
 		return inc;
 		
 	}
 	public Incident getIncByIncNumber(String num){
 		String incNum = num.trim();
-		String hql = "FROM Incident inc where upper(incNumber)= upper("+incNum+")";
-		Incident inc = (Incident)getCurrentSession().createQuery(hql);
+		String hql = "FROM Incident where upper(incNumber)=upper('"+ incNum+"')";
+		System.out.println("select * "+hql);
+		List list = getCurrentSession().createQuery(hql).list();
+		if(list.isEmpty()){
+			return null;
+		}
+		Incident inc = (Incident)getCurrentSession().createQuery(hql).list().get(0);
 		return inc;
 	}
 	public void deleteIncident(int id) {

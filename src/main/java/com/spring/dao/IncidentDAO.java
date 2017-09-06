@@ -6,7 +6,7 @@ import com.spring.model.Incident;
 
 public interface IncidentDAO {
 	
-	public void addIncident(Incident incident);
+	public Incident addIncident(Incident incident);
 	public void updateIncident(Incident incident);
 	public Incident getIncident(int id);
 	public Incident getIncByIncNumber(String num);

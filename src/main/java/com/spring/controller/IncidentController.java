@@ -31,9 +31,9 @@ public class IncidentController {
         return new ResponseEntity<List<Incident>>(inc, HttpStatus.OK);
 		
 	}
-	@RequestMapping(value="inc/jsonlist")
-	public ResponseEntity<List<Incident>> listOfIncidents() {
-		
+	@RequestMapping(value="inc/jsonlist/{month}/{year}")
+	public ResponseEntity<List<Incident>> listOfIncidents(@PathVariable("month") int month,@PathVariable("year") int year) {
+		System.out.println("************"+month+"/"+year);
 		List<Incident> inc = incService.getAllIncident();
 			
 		if(inc.isEmpty()){
@@ -44,8 +44,10 @@ public class IncidentController {
 	}
 	//-------------------Retrieve Single INC--------------------------------------------------------
     
-    @RequestMapping(value = "/inc/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/inc/pageDetails/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Incident> getIncident(@PathVariable("id") int id) {
+    	System.out.println("INC with id ***********");
+        
     	Incident inc = incService.getIncident(id);
         if (inc == null) {
             System.out.println("INC with id " + id + " not found");
@@ -57,20 +59,17 @@ public class IncidentController {
   //-------------------Create a INC--------------------------------------------------------
     
     @RequestMapping(value = "/inc/create", method = RequestMethod.POST)
-    public ResponseEntity<Void> createInc(@RequestBody Incident inc,    UriComponentsBuilder ucBuilder) {
-    	System.out.println("A Inc with inc number " + inc.getIncNumber() );
-    	System.out.println("A Inc with inc number " + inc.toString() );
-        /*if (incService.isIncidentExist(inc)) {
-            System.out.println("A Inc with inc number " + inc.getIncNumber() + " already exist");
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }*/
-    	   
-  
-        incService.addIncident(inc);
-  
-        //HttpHeaders headers = new HttpHeaders();
-        //headers.setLocation(ucBuilder.path("/inc/{id}").buildAndExpand(inc.getId()).toUri());
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+    public ResponseEntity<Incident> createInc(@RequestBody Incident inc) {
+    	if (incService.isIncidentExist(inc)) {
+    		System.out.println("not created*******");
+    		return new ResponseEntity<Incident>(incService.findByIncidentNumber(inc.getIncNumber()), HttpStatus.CONFLICT);
+        	
+        }else{
+        	System.out.println("created");
+    		return new ResponseEntity<Incident>(incService.addIncident(inc), HttpStatus.CREATED);
+        	
+        }
+    	
     }
   
      

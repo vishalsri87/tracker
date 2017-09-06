@@ -6,7 +6,7 @@ import com.spring.model.Incident;
 
 public interface IncidentService {
 	
-	public void addIncident(Incident inc);
+	public Incident addIncident(Incident inc);
 	public void updateIncident(Incident inc);
 	public Incident getIncident(int id);
 	public void deleteIncident(int id);
