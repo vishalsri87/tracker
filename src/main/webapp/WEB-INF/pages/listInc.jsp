@@ -25,7 +25,7 @@
                               <td><span ng-bind="inc.issue"></span></td>
                               <td>
                               <a style="color:#1a0dab;" href="#" ui-sref="details" ng-click="trController.getDetails(inc.id)">
-                         <span ng-bind="inc.incNumber"></span></a>
+                                <span ng-bind="inc.incNumber"></span></a>
                               </td>
                               <td><span ng-bind="inc.description"></span></td>
                               <td><span ng-bind="inc.resolution"></span></td>

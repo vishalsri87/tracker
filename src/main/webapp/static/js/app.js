@@ -10,9 +10,7 @@ App.config([ '$stateProvider', '$urlRouterProvider',
 			$stateProvider.state('home', {
 				url : "/home",
 				templateUrl : 'home',
-				controller : "TrackerController as trController"
-
-			})
+						})
 
 			.state('create', {
 				url : "/inc/create",

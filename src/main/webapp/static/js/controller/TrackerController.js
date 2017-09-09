@@ -18,17 +18,17 @@ angular
 								description : '',
 								resolution : '',
 								sendBy : {
-									'id' : 1,
-									'name' : 'L2 Team'
+									'id' : '',
+									'name' : ''
 								},
 								priority : '',
 								incStatus : {
-									"id" : 1,
-									"name" : "Open"
+									"id" : '',
+									"name" : ''
 								},
 								solveBy : {
-									'id' : 2,
-									'name' : 'Lenin'
+									'id' : '',
+									'name' : ''
 								},
 								issueDate : '',
 								pickByTcs : ''
@@ -121,8 +121,35 @@ angular
 
 							function createInc(inc) {
 								IncService.createInc(inc).then(function(d) {
-									getDetails(inc['id']);
-									$location.path('/search');
+									
+									alert('d.id : ' + d.id);
+									alert('inc[id] : ' + self.inc['id']);
+									
+									getDetails(d.id);
+								  self.inc={
+											id : null,
+											issue : '',
+											incNumber : '',
+											description : '',
+											resolution : '',
+											sendBy : {
+												'id' : '',
+												'name' : ''
+											},
+											priority : '',
+											incStatus : {
+												"id" : '',
+												"name" : ''
+											},
+											solveBy : {
+												'id' : '',
+												'name' : ''
+											},
+											issueDate : '',
+											pickByTcs : ''
+
+										};
+									$location.path('/inc/details');
 									
 								}, function(errResponse) {
 									console.error('Error while creating Inc');
