@@ -7,7 +7,72 @@ angular
 						'$scope',
 						'IncService',
 						'$location',
-						function($scope, IncService, $location) {
+						'$filter',
+						function($scope, IncService, $location,$filter) {
+							
+							
+				
+							
+							//Start*To Export SearchTable data in excel  
+							// create XLS template with your field.  
+							    var mystyle = {         
+							        headers:true,
+							        style:"background:#00ff00",
+							        columns: [ 
+									{columnid:'Issue',title:'AlbatroIssueses',
+									    style:'background:red;font-size:20px',
+									    cell:{style:'background:blue'}
+									  },       
+							          { columnid: 'incNumber', title: 'IncNumber'},  
+							          { columnid: 'description', title: 'Description'},  
+							          { columnid: 'resolution', title: 'resolution'},  
+							          { columnid: "incStatus[name]", title: 'Status' },  
+							          { columnid: 'sendBy.name', title: 'SendBy'},  
+							          { columnid: 'priority', title: 'Priority'},  
+							          { columnid: 'solveBy', title: 'SolvedBy'}, 
+							          { columnid: 'issueDate', title: 'IssueDate'}, 
+							          { columnid: 'pickByTcs', title: 'PickByTcs'}, 
+							          
+							        ],         
+							    }; 									
+							
+								  
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
 							var self = this;
 							self.proirites = [];
 							self.incs = [];
@@ -43,7 +108,7 @@ angular
 							self.getDetails = getDetails;
 							fetchAllStatus();
 							fetchAllSolveBy();
-
+							
 							function fetchAllIncs() {
 								console.log('inside fetchAllIncs');
 								var dateObj = new Date();
@@ -55,6 +120,22 @@ angular
 								IncService.fetchAllIncs(month,year)
 										.then(
 												function(d) {
+													self.incs = d;
+													console.log(d);
+												},
+												function(errResponse) {
+													console.error('Error while fetching Incidents');
+												});
+							}
+							self.fetchAllIncsByDate= function() {
+								console.log('inside fetchAllIncsByDate');
+								var month=self.listInc.month;
+							    var year=self.listInc.year;
+								IncService.fetchAllIncs(month,year)
+										.then(
+												function(d) {
+													
+													self.incs = [];
 													self.incs = d;
 													console.log(d);
 												},
@@ -122,8 +203,6 @@ angular
 							function createInc(inc) {
 								IncService.createInc(inc).then(function(d) {
 									
-									alert('d.id : ' + d.id);
-									alert('inc[id] : ' + self.inc['id']);
 									
 									getDetails(d.id);
 								  self.inc={
@@ -179,6 +258,14 @@ angular
 									
 								}
 							}
+							 self.exportData = function () {  
+							        alasql('SELECT * INTO XLS("SearchResult.xls",?) FROM ?', [mystyle, self.incs]);  
+							    };  
+						
+									
+							
+							
+							
 
 							function search(searchKey) {
 								IncService

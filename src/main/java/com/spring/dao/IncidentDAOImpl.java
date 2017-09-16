@@ -2,6 +2,7 @@ package com.spring.dao;
 
 import java.util.List;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +61,15 @@ public class IncidentDAOImpl implements IncidentDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Incident> getAllIncident() {
-		return getCurrentSession().createQuery("from Incident").list();
+	public List<Incident> getAllIncident(String month,String year) {
+		//String hql = "from Incident inc WHERE to_char(issue_raised,'YYYY') = '"+year+"'";
+		String hql="select * from incidents where month(issue_raised)='"+month+"' and year(issue_raised)='"+year+"'";
+		System.out.println(hql);
+		SQLQuery query = getCurrentSession().createSQLQuery(hql);
+		query.addEntity(Incident.class);
+		List<Incident> result = query.list();
+		return result;
+		//return getCurrentSession().createQuery(hql).list();
 	}
 	@SuppressWarnings("unchecked")
 	public List<Incident> search(String key) {

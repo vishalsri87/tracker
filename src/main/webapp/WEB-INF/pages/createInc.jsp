@@ -53,7 +53,7 @@
 		<div class="form-group col-md-12">
 		<label class="col-md-2 control-lable">&nbsp;</label>
 		<div class="form-group col-md-7">
-			<select data-ng-options="o.name for o in trController.allSendBy"
+			<select style="margin-left:11px" data-ng-options="o.name for o in trController.allSendBy"
 				data-ng-model="trController.inc.sendBy">
 				<option value="" label="-- Select Send By --" disabled
 					selected="selected">Select Send By</option>

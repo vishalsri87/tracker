@@ -20,18 +20,16 @@ angular.module('tracker').factory('IncService', ['$http', '$q', function($http, 
 
     function fetchDetails(id) {
     	var deferred = $q.defer();
-        alert('enter');
         $http.get(REST_SERVICE_URI+'inc/pageDetails/'+id).then(
             function (response) {
             	deferred.resolve(response.data);
-            	 alert('response');
+            	 
             },
             function(errResponse){
                 console.error('Error while fetching Incidents');
                 deferred.reject(errResponse);
             }
         );
-        alert('exit');
         
         return deferred.promise;
     }
@@ -128,15 +126,11 @@ angular.module('tracker').factory('IncService', ['$http', '$q', function($http, 
     
 
     function createInc(inc) {
-    	alert('inside service : createInc 1');
-		
-        var deferred = $q.defer();
+    	var deferred = $q.defer();
         $http.post(REST_SERVICE_URI+'inc/create', inc)
             .then(		
             function (response) {
-            	alert('inside service : createInc 2');
-        		deferred.resolve(response.data);
-        		alert('inside service : createInc 3');
+            	deferred.resolve(response.data);
         		
             },
             function(errResponse){

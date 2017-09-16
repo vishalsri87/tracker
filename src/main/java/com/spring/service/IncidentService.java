@@ -10,7 +10,7 @@ public interface IncidentService {
 	public void updateIncident(Incident inc);
 	public Incident getIncident(int id);
 	public void deleteIncident(int id);
-	public List<Incident> getAllIncident();
+	public List<Incident> getAllIncident(String month,String year);
 	public List<Incident> search(String key);
 
 	public boolean isIncidentExist(Incident inc); 

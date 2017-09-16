@@ -7,7 +7,7 @@
 				ng-model="trController.searchKey"> <span
 				class="input-group-btn">
 				<button class="btn btn-default" type="button"
-					on-click="trController.search(trController.searchKey)">Go!</button>
+					ng-click="trController.search(trController.searchKey)">Go!</button>
 			</span>
 		</div>
 		<!-- /input-group -->
@@ -20,7 +20,7 @@
 <div  >
 <div class="row" style="margin-top:20px;">
 	<div class="col-lg-8" >
-	<div class="row" ng-repeat="inc in trController.searchResult" style="margin-left :50px;padding-right:20px;background-color: #F0F0F0;">
+	<div class="row" ng-repeat="inc in trController.searchResult" style="margin-left :50px;padding-right:20px;">
 				<h3 style="font-size: 18px !important; color: #1a0dab; font-weight: bold;">
 					<a style="color: #1a0dab;" href="#" ui-sref="details"
 						ng-click="trController.getDetails(inc.id)"><span

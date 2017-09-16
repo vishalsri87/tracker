@@ -33,8 +33,8 @@ public class IncidentServiceImpl implements IncidentService {
 		incDAO.deleteIncident(id);
 	}
 
-	public List<Incident> getAllIncident() {
-		return incDAO.getAllIncident();
+	public List<Incident> getAllIncident(String month,String year) {
+		return incDAO.getAllIncident(month,year);
 	}
 
 	public boolean isIncidentExist(Incident inc) {
