@@ -64,6 +64,23 @@ angular.module('tracker').factory('IncService', ['$http', '$q', function($http, 
         );
         return deferred.promise;
     }
+    
+    function chartDate(month,year) {
+    	var deferred = $q.defer();
+        $http.get(REST_SERVICE_URI+'inc/jsonlist/chartDate/'+month+'/'+year)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while fetching Incidents');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+    
+    
     function fetchAllPriority() {
         var deferred = $q.defer();
         $http.get(REST_SERVICE_URI+'priority/jsonlist')

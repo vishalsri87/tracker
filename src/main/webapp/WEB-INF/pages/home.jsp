@@ -146,6 +146,9 @@ body {
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	
+
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
 <script
@@ -164,6 +167,13 @@ table {
 	word-wrap: break-word;
 }
 </style>
+<script src="<c:url value='/static/js/Chart.min.js' />"></script>
+<script src="http://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js"></script>
+<script>
+(function (ChartJsProvider) {
+  ChartJsProvider.setOptions({ colors : [ '#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'] });
+}); 
+</script>
 </head>
 <body style="font-family:" Times NewRoman", Georgia, Serif;">
 <div class="container-fluid">
@@ -210,6 +220,11 @@ table {
 								ui-sref-active="active">Create</a></li>
 							<li><a ui-sref="search" 
 								ui-sref-active="active">Search</a></li>
+								
+							<li><a ui-sref="audit" 
+								ui-sref-active="active">Audit</a></li>
+								
+								
 						</ul>
 					</div>
 				</nav>
@@ -233,10 +248,12 @@ table {
 	<div ng-controller="TrackerController as trController">
 		<div ui-view></div>
 
+
+
 	</div>
 
 </body>
 </div>
-<div class="footer-skelton" style="color: #ffffff;text-align: center;">@citi.com</div>
-
+<!-- <div class="footer-skelton" style="color: #ffffff;text-align: center;">@citi.com</div>
+ -->
 </html>

@@ -17,21 +17,21 @@ angular
 							// create XLS template with your field.  
 							    var mystyle = {         
 							        headers:true,
-							        style:"background:#00ff00",
+							        style:"background:red",
 							        columns: [ 
-									{columnid:'Issue',title:'AlbatroIssueses',
-									    style:'background:red;font-size:20px',
-									    cell:{style:'background:blue'}
+									{columnid:'issue',title:'Issue',
+									    style:'background:red;font-size:40px',
+									    cell:{style:'background:yellow'}
 									  },       
 							          { columnid: 'incNumber', title: 'IncNumber'},  
 							          { columnid: 'description', title: 'Description'},  
-							          { columnid: 'resolution', title: 'resolution'},  
-							          { columnid: "incStatus[name]", title: 'Status' },  
-							          { columnid: 'sendBy.name', title: 'SendBy'},  
+							          { columnid: 'resolution', title: 'Resolution'},  
+							          { columnid: 'incStatus', title: 'Status' },  
+							          { columnid: 'sendBy', title: 'Send By'},  
 							          { columnid: 'priority', title: 'Priority'},  
-							          { columnid: 'solveBy', title: 'SolvedBy'}, 
-							          { columnid: 'issueDate', title: 'IssueDate'}, 
-							          { columnid: 'pickByTcs', title: 'PickByTcs'}, 
+							          { columnid: 'solveBy', title: 'Solved By'}, 
+							          { columnid: 'issueDate', title: 'Issue Date'}, 
+							          { columnid: 'pickByTcs', title: 'PickBy Tcs'}, 
 							          
 							        ],         
 							    }; 									
@@ -116,17 +116,33 @@ angular
 								var day = dateObj.getUTCDate();
 								var year = dateObj.getUTCFullYear();
 
-								
+								//chartDate(month,year);
 								IncService.fetchAllIncs(month,year)
 										.then(
 												function(d) {
 													self.incs = d;
+													//alert();
+													chartData();
 													console.log(d);
 												},
 												function(errResponse) {
 													console.error('Error while fetching Incidents');
 												});
 							}
+							/*function chartDate() {
+								IncService.chartDate(month,year)
+										.then(
+												function(d) {
+													self.data = d;
+													
+												},
+												function(errResponse) {
+													console.error('Error while fetching Incidents');
+												});
+							}
+							*/
+							
+							
 							self.fetchAllIncsByDate= function() {
 								console.log('inside fetchAllIncsByDate');
 								var month=self.listInc.month;
@@ -258,12 +274,39 @@ angular
 									
 								}
 							}
-							 self.exportData = function () {  
-							        alasql('SELECT * INTO XLS("SearchResult.xls",?) FROM ?', [mystyle, self.incs]);  
-							    };  
-						
-									
 							
+							/*_____________________________________________________________________________________________*/ 
+							 self.exportData = function () {  
+							        
+								 alasql('SELECT issue,incNumber,description,resolution,incStatus->name as incStatus  ,sendBy->name as sendBy ,priority->name as priority,solveBy->name as solveBy, datetime(issueDate) as issueDate ,datetime(pickByTcs) as pickByTcs INTO XLS("SearchResult.xls",?) FROM ?', [mystyle, self.incs]);  
+							        
+							    };  
+							    alasql.fn.datetime = function(dateStr) {
+						            var date = new Date(dateStr);
+						            return date.toLocaleString();
+						        }; 	
+							/*_____________________________________________________________________________________________*/ 
+							    
+							    	  self.labels = ['BAU', 'BUSCRIT', 'EMER'];
+							    	  self.series = ['Series A', 'Series B'];
+
+							    	  self.data = [
+							    	    [0,12,15,20,30]
+							    	  ];
+							    	
+		    	   function chartData() {  
+		    		  // alert('inside');
+		    		  var res=alasql('SELECT  priority->name as name , SUM(priority->name) AS hits \
+		    			       FROM ? \
+		    			       GROUP BY priority->name \
+		    			       ORDER BY bytes DESC',self.incs);
+						 /*console.log(res);
+						 alert(res);
+						 self.data=[];
+					      self.data.push(res); */ 
+					    };  
+					    
+							   
 							
 							
 

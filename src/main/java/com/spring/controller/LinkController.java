@@ -32,5 +32,10 @@ public class LinkController {
 		System.out.println("inside search page");
         return "search";   
     }
+	@RequestMapping(value="/inc/audit")
+    public String getAudit() {
+		System.out.println("inside audit page");
+        return "audit";   
+    }
  
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-var App = angular.module('tracker', [ 'ui.router' ]);
+var App = angular.module('tracker', [ 'ui.router' ,'chart.js']);
 
 App.config([ '$stateProvider', '$urlRouterProvider',
 		function($stateProvider, $urlRouterProvider) {
@@ -24,6 +24,10 @@ App.config([ '$stateProvider', '$urlRouterProvider',
 			.state('search', {
 				url : "/inc/search",
 				templateUrl : 'inc/search',
+			})
+			.state('audit', {
+				url : "/inc/audit",
+				templateUrl : 'inc/audit',
 			})
 
 		} ]);
