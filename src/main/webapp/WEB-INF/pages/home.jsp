@@ -211,7 +211,7 @@ table {
 					<div class="container-fluid">
 						<div class="navbar-header">
 						<a class="navbar-brand" ui-sref="home"
-								ui-sref-active="active">Citi Tracker</a>
+								ui-sref-active="active">Issue Tracker</a>
 						</div>
 						<ul class="nav navbar-nav">
 							<li class="active"><a ui-sref="home"
