@@ -154,6 +154,12 @@ body {
 <script
 	src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 <script src="<c:url value='/static/js/app.js' />"></script>
+
+<script src="<c:url value='/static/js/fusioncharts.js' />"></script>
+<script src="<c:url value='/static/js/fusioncharts.charts.js' />"></script>
+<script src="<c:url value='/static/js/angular-fusioncharts.min.js' />"></script>
+
+
 <script src="<c:url value='/static/js/service/tracker_service.js' />"></script>
 <script
 	src="<c:url value='/static/js/controller/TrackerController.js' />"></script>
@@ -211,10 +217,10 @@ table {
 					<div class="container-fluid">
 						<div class="navbar-header">
 						<a class="navbar-brand" ui-sref="home"
-								ui-sref-active="active">Citi Tracker</a>
+								ui-sref-active="active">Issue Tracker</a>
 						</div>
 						<ul class="nav navbar-nav">
-							<li class="active"><a ui-sref="home"
+							<li><a ui-sref="home"
 								ui-sref-active="active">Home</a></li>
 							<li><a ui-sref="create"
 								ui-sref-active="active">Create</a></li>

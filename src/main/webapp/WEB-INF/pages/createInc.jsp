@@ -148,7 +148,7 @@
 			<div class="form-group col-md-12">
 				<label class="col-md-2 control-lable" for="issueDate">issueDate</label>
 				<div class="col-md-2">
-					<input type="date" ng-model="trController.inc.issueDate"
+					<input type="date" ng-model="trController.inc.issueDate " 
 						id="issueDate" class="issueDate form-control input-sm"
 						placeholder="Enter your issueDate" required ng-minlength="1"
 						value="{{trController.inc.issueDate | date : 'yyyy-MM-dd'}}" />

@@ -74,6 +74,7 @@ angular
 							
 							
 							var self = this;
+							self.listInc=null;
 							self.proirites = [];
 							self.incs = [];
 							self.inc = {
@@ -104,6 +105,7 @@ angular
 							fetchAllPriority();
 							fetchAllSendBy();
 							self.submit = submit;
+							self.submitUpdate = submitUpdate;
 							self.search = search;
 							self.getDetails = getDetails;
 							fetchAllStatus();
@@ -129,19 +131,6 @@ angular
 													console.error('Error while fetching Incidents');
 												});
 							}
-							/*function chartDate() {
-								IncService.chartDate(month,year)
-										.then(
-												function(d) {
-													self.data = d;
-													
-												},
-												function(errResponse) {
-													console.error('Error while fetching Incidents');
-												});
-							}
-							*/
-							
 							
 							self.fetchAllIncsByDate= function() {
 								console.log('inside fetchAllIncsByDate');
@@ -217,6 +206,7 @@ angular
 							}
 
 							function createInc(inc) {
+								console.log(inc);
 								IncService.createInc(inc).then(function(d) {
 									
 									
@@ -251,11 +241,38 @@ angular
 								});
 
 							}
+							
+
+							
+							function updateInc() {
+								IncService.updateInc(self.detailPage).then(function(d) {
+									self.detailPage=d;
+									
+									self.detailPage.pickByTcs = new Date(self.detailPage.pickByTcs); 
+									self.detailPage.issueDate = new Date(self.detailPage.issueDate); 
+									if(self.listInc !== null){
+										self.fetchAllIncsByDate();
+									}else{
+										fetchAllIncs();
+								}
+									$location.path('/inc/details');
+									
+								}, function(errResponse) {
+									console.error('Error while updating Inc');
+								});
+
+							}
 
 							function getDetails(id) {
+								
 								IncService.fetchDetails(id).then(
 												function(d) {
+													
 													self.detailPage = d;
+
+													self.detailPage.pickByTcs = new Date(self.detailPage.pickByTcs); 
+													self.detailPage.issueDate = new Date(self.detailPage.issueDate);
+													
 													console.log('*********');
 													console.log(self.detailPage);
 												},
@@ -270,7 +287,18 @@ angular
 									createInc(self.inc);
 									
 								} else {
-									alert('not saved');
+									alert('not crated');
+									
+								}
+							}
+							function submitUpdate() {
+								
+								if (self.detailPage.id !== null) {
+									updateInc();
+									
+								} else {
+									alert('not updating');
+									
 									
 								}
 							}
@@ -287,6 +315,30 @@ angular
 						        }; 	
 							/*_____________________________________________________________________________________________*/ 
 							    
+						        
+						        self.myDataSource = {
+						        	    chart: {
+						        	        caption: "Issue Graph",
+						        	        subCaption: "priority wise issue",
+						        	        numberPrefix: "",
+						        	        theme: "fint"
+						        	    },
+						        	    data:[{
+						        	        label: "BAU",
+						        	        value: "10"
+						        	    },
+						        	    {
+						        	        label: "BUSCRIT",
+						        	        value: "90"
+						        	    },
+						        	    {
+						        	        label: "EMER",
+						        	        value: "8"
+						        	    }]
+						        	};
+						        
+						        
+						        
 							    	  self.labels = ['BAU', 'BUSCRIT', 'EMER'];
 							    	  self.series = ['Series A', 'Series B'];
 
@@ -295,7 +347,7 @@ angular
 							    	  ];
 							    	
 		    	   function chartData() {  
-		    		  // alert('inside');
+		    		   
 		    		  var res=alasql('SELECT  priority->name as name , SUM(priority->name) AS hits \
 		    			       FROM ? \
 		    			       GROUP BY priority->name \

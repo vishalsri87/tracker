@@ -7,6 +7,7 @@ angular.module('tracker').factory('IncService', ['$http', '$q', function($http, 
     var factory = {
     		fetchAllIncs: fetchAllIncs,
     		createInc: createInc,
+    		updateInc: updateInc,
     		fetchAllPriority :fetchAllPriority,
     		fetchAllSolveBy : fetchAllSolveBy,
     	    fetchAllStatus : fetchAllStatus,
@@ -152,6 +153,24 @@ angular.module('tracker').factory('IncService', ['$http', '$q', function($http, 
             },
             function(errResponse){
                 console.error('Error while creating Incident');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+    function updateInc(inc) {
+    	alert(REST_SERVICE_URI+'inc/update');
+    	var deferred = $q.defer();
+        $http.post(REST_SERVICE_URI+'inc/update', inc)
+            .then(		
+            		
+            function (response) {
+            	alert(REST_SERVICE_URI+'inc/update');
+            	deferred.resolve(response.data);
+        		
+            },
+            function(errResponse){
+                console.error('Error while updating Incident');
                 deferred.reject(errResponse);
             }
         );

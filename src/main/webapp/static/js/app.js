@@ -1,6 +1,6 @@
 'use strict';
 
-var App = angular.module('tracker', [ 'ui.router' ,'chart.js']);
+var App = angular.module('tracker', [ 'ui.router' ,'chart.js','ng-fusioncharts']);
 
 App.config([ '$stateProvider', '$urlRouterProvider',
 		function($stateProvider, $urlRouterProvider) {

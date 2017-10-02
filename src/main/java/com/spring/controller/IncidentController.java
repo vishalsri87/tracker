@@ -77,14 +77,15 @@ public class IncidentController {
       
     //------------------- Update a INC --------------------------------------------------------
       
-    @RequestMapping(value = "/inc/{id}/update", method = RequestMethod.PUT)
-    public ResponseEntity<Incident> updateInc(@PathVariable("id") int id, @RequestBody Incident inc) {
-        System.out.println("Updating Inc " + id);
+    @RequestMapping(value = "/inc/update", method = RequestMethod.POST)
+    public ResponseEntity<Incident> updateInc( @RequestBody Incident inc) {
+        System.out.println("Updating Inc ============= -" + inc.getId());
+        
           
-        Incident  currentInc = incService.getIncident(id);
+        Incident  currentInc = incService.getIncident(inc.getId());
           
         if (currentInc==null) {
-            System.out.println("inc with id " + id + " not found");
+            System.out.println("inc with id " + inc.getId() + " not found");
             return new ResponseEntity<Incident>(HttpStatus.NOT_FOUND);
         }
   
